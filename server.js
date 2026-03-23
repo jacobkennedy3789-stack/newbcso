@@ -890,36 +890,58 @@ app.post("/admin/divisions/toggle", auth, admin, async (req,res)=>{
 
 })
 
-app.post("/api/training/notes/update", async (req,res)=>{
-
- try{
-
+app.post("/api/training/notes/update", async (req, res) => {
+ try {
   const { deputy_id, type, notes } = req.body
 
-  if(type === "command"){
-   await pool.query(
-    "UPDATE training_notes SET command_notes=$1 WHERE deputy_id=$2",
-    [notes, deputy_id]
-   )
+  if (type === "command") {
+   await pool.query(`
+    INSERT INTO training_notes (deputy_id, command_notes)
+    VALUES ($1, $2)
+    ON CONFLICT (deputy_id)
+    DO UPDATE SET command_notes = EXCLUDED.command_notes
+   `, [deputy_id, notes])
   }
 
-  if(type === "fto"){
-   await pool.query(
-    "UPDATE training_notes SET fto_notes=$1 WHERE deputy_id=$2",
-    [notes, deputy_id]
-   )
+  if (type === "fto") {
+   await pool.query(`
+    INSERT INTO training_notes (deputy_id, fto_notes)
+    VALUES ($1, $2)
+    ON CONFLICT (deputy_id)
+    DO UPDATE SET fto_notes = EXCLUDED.fto_notes
+   `, [deputy_id, notes])
   }
 
-  res.json({success:true})
+  res.json({ success: true })
 
- }catch(err){
-
-  console.error("NOTES UPDATE ERROR:",err)
-  res.status(500).json({error:"notes update failed"})
-
+ } catch (err) {
+  console.error("NOTES UPDATE ERROR:", err)
+  res.status(500).json({ error: "notes update failed" })
  }
-
 })
+
+app.get("/api/training/notes/:id", async (req, res) => {
+ try {
+  const { id } = req.params
+
+  const result = await pool.query(
+   "SELECT command_notes, fto_notes FROM training_notes WHERE deputy_id=$1",
+   [id]
+  )
+
+  if (result.rows.length === 0) {
+   return res.json({ command_notes: "", fto_notes: "" })
+  }
+
+  res.json(result.rows[0])
+
+ } catch (err) {
+  console.error("NOTES LOAD ERROR:", err)
+  res.status(500).json({ error: "failed to load notes" })
+ }
+})
+
+
 app.post("/api/training/update", requireFTO, async (req,res)=>{
 
  try{
