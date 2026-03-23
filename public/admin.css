@@ -1,0 +1,107 @@
+body{
+  background:#141f16;
+    color:#c2b280;
+  font-size:20px;
+  margin:0;
+  font-family:Arial}
+.sidebar{
+  position:fixed;
+  left:0;top:0;width:220px;
+  height:100%;background:#141f16;
+  color:#c2b280;
+  padding:20px}
+.sidebar a{
+  display:block;
+  color:#c2b280;
+  margin:10px 0;
+  text-decoration:none}
+.main{
+  margin-left:240px;
+  padding:20px}
+table{
+  border-collapse:collapse;
+  width:100%;
+  background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+td,th{
+  border:3px solid #020202;
+  padding:8px}
+button{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+.modal{
+  display:none;
+  background:background:#c2b280;
+  padding:20px}
+
+#name{background:#c2b280;
+font-weight:600;
+font-size:20px;
+  }
+#rank{background:#c2b280;
+font-weight:600;
+font-size:20px;
+  }
+#hire_date{background:#c2b280;
+font-weight:600;
+font-size:20px;
+  }
+
+table{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+h3{ color:#c2b280;;
+ font-weight:600;
+ font-size:40px;}
+
+createform {
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:0px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+.backBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+input::placeholder {
+  color: #000000; /* Sets the placeholder text color to light gray */
+}

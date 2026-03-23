@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Deputy Training Profile</title>
+
+<style>
+
+body{
+ font-family: Arial, sans-serif;
+ background:#1f2f1f;
+ color:#f5f0dc;
+ padding:40px;
+ margin:0;
+}
+
+/* back button */
+
+.backBtn{
+ margin-bottom:20px;
+ padding:8px 14px;
+ background:#2f4f2f;
+ color:#f5f0dc;
+ border:none;
+ border-radius:4px;
+ cursor:pointer;
+}
+
+.backBtn:hover{
+ background:#3f6f3f;
+}
+
+/* page header */
+
+h1{
+ background:#2f4f2f;
+ padding:20px;
+ border-radius:8px;
+ border:2px solid #c2b280;
+ margin-bottom:30px;
+}
+
+/* phase layout */
+
+.phase{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-bottom:40px;
+}
+
+.phase h2{
+ width:100%;
+ background:#2f4f2f;
+ padding:10px 14px;
+ border-radius:6px;
+ border-left:6px solid #c2b280;
+}
+
+/* training items */
+
+.item{
+ width:calc(25% - 10px);
+ padding:12px;
+ background:#d8caa3;
+ border-radius:6px;
+ border-left:5px solid #2f4f2f;
+ color:#1f2f1f;
+ box-sizing:border-box;
+}
+
+.item label{
+ cursor:pointer;
+ font-weight:600;
+}
+
+.meta{
+ font-size:12px;
+ color:#3b4d2f;
+ margin-top:4px;
+}
+
+/* notes section */
+
+.notes-section{
+ display:flex;
+ gap:20px;
+ margin-bottom:30px;
+ flex-wrap:wrap;
+}
+
+.note-box{
+ background:#d8caa3;
+ padding:15px;
+ border-radius:6px;
+ border-left:6px solid #2f4f2f;
+ width:calc(40% - 10px);
+ color:#1f2f1f;
+}
+
+.note-box textarea{
+ width:90%;
+ height:120px;
+ margin-top:10px;
+ padding:10px;
+ border-radius:4px;
+ border:none;
+ resize:vertical;
+}
+
+.note-box button{
+ margin-top:10px;
+ padding:8px 14px;
+ background:#2f4f2f;
+ color:#f5f0dc;
+ border:none;
+ border-radius:4px;
+ cursor:pointer;
+}
+
+.note-box button:hover{
+ background:#3f6f3f;
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="backBtn" onclick="goBack()">← Back to FTO Main</button>
+
+<h1>Deputy Training Record</h1>
+<div id="training"></div>
+<div class="notes-section">
+
+<div class="note-box">
+<h2>Command Notes</h2>
+<textarea id="commandNotes"></textarea>
+<button onclick="saveNotes('command')">Save Command Notes</button>
+</div>
+
+<div class="note-box">
+<h2>FTO Notes</h2>
+<textarea id="ftoNotes"></textarea>
+<button onclick="saveNotes('fto')">Save FTO Notes</button>
+</div>
+
+</div>
+
+
+
+<script>
+
+const params = new URLSearchParams(window.location.search)
+const deputyId = params.get("id")
+
+/* LOAD TRAINING */
+
+fetch(`/api/training/${deputyId}`)
+.then(res=>res.json())
+.then(trainingData=>{
+
+ const container = document.getElementById("training")
+
+ if(!trainingData || typeof trainingData !== "object") return
+
+ Object.keys(trainingData).forEach(phase=>{
+
+  if(!Array.isArray(trainingData[phase])) return
+
+  const phaseDiv = document.createElement("div")
+  phaseDiv.className="phase"
+
+  phaseDiv.innerHTML=`<h2>${phase}</h2>`
+
+  trainingData[phase].forEach(item=>{
+
+   const checked = item.status==="completed" ? "checked" : ""
+
+   const div=document.createElement("div")
+   div.className="item"
+
+   div.innerHTML=`
+<label>
+<input type="checkbox" ${checked}
+ onclick="updateItem(${item.item_id},this.checked)">
+ ${item.item_name}
+</label>
+
+<div class="meta">
+${item.completed_by ?
+"Completed by "+item.completed_by+" on "+new Date(item.completed_at).toLocaleString()
+:""}
+</div>
+`
+
+   phaseDiv.appendChild(div)
+
+  })
+
+  container.appendChild(phaseDiv)
+
+ })
+
+})
+.catch(err=>{
+ console.error("Training load error:",err)
+})
+/* LOAD NOTES */
+
+fetch(`/api/training/notes/${deputyId}`)
+.then(res=>{
+ if(!res.ok) throw new Error("Notes not found")
+ return res.json()
+})
+.then(notes=>{
+
+ document.getElementById("commandNotes").value = notes.command_notes || ""
+ document.getElementById("ftoNotes").value = notes.fto_notes || ""
+
+})
+.catch(err=>{
+ console.warn("Notes not loaded",err)
+})
+
+/* SAVE NOTES */
+
+function saveNotes(type){
+
+ const notes = type==="command"
+ ? document.getElementById("commandNotes").value
+ : document.getElementById("ftoNotes").value
+
+ fetch("/api/training/notes/update",{
+  method:"POST",
+  headers:{ "Content-Type":"application/json" },
+  body:JSON.stringify({
+   deputy_id:deputyId,
+   type:type,
+   notes:notes
+  })
+ })
+ .then(()=>alert("Notes saved"))
+
+}
+
+/* UPDATE TRAINING ITEM */
+
+function updateItem(itemId,checked){
+
+ fetch("/api/training/update",{
+  method:"POST",
+  headers:{ "Content-Type":"application/json" },
+  body:JSON.stringify({
+   deputy_id:deputyId,
+   item_id:itemId,
+   status:checked ? "completed" : "pending"
+  })
+ })
+
+}
+
+/* BACK BUTTON */
+
+function goBack(){
+ window.history.back()
+}
+
+</script>
+
+</body>
+</html>

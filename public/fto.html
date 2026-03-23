@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>FTO Dashboard</title>
+<button class="backBtn" onclick="goBack()">← Back to Roster</button>
+<style>
+
+body{
+ font-family: Arial, sans-serif;
+ background:#1f2f1f;
+ color:#f5f0dc;
+ padding:40px;
+ margin:0;
+}
+
+/* header */
+
+h1{
+ background:#2f4f2f;
+ padding:20px;
+ border-radius:8px;
+ color:#f5f0dc;
+ border:2px solid #c2b280;
+}
+
+/* links */
+
+a{
+ color:#2f4f2f;
+ text-decoration:none;
+ font-size:18px;
+ font-weight:bold;
+}
+
+ .backBtn{
+ background:#c2b280;
+ color:#1f2f1f;
+ border:none;
+ padding:10px 16px;
+ font-weight:bold;
+ border-radius:6px;
+ cursor:pointer;
+ margin-bottom:25px;
+}
+
+.backBtn:hover{
+ background:#b5a372;
+}
+
+/* card layout */
+
+.card{
+ background:#d8caa3;
+ padding:16px;
+ margin-bottom:12px;
+ border-radius:8px;
+ border-left:6px solid #2f4f2f;
+ transition:transform .1s, box-shadow .1s;
+}
+
+/* hover effect */
+
+.card:hover{
+ transform:translateY(-2px);
+ box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* container spacing */
+
+#deputyList{
+ margin-top:20px;
+ max-width:600px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>FTO Training Dashboard</h1>
+
+<div id="deputyList"></div>
+
+<script>
+ 
+
+
+fetch("/api/probationary-deputies")
+.then(res => res.json())
+.then(data => {
+
+ const container = document.getElementById("deputyList");
+
+ if(!Array.isArray(data)){
+  container.innerHTML = "<p>Failed to load deputies.</p>";
+  console.error("API error:", data);
+  return;
+ }
+
+ data.forEach(dep => {
+
+  const card = document.createElement("div");
+  card.className = "card";
+
+  card.innerHTML = `
+   <a href="/fto_profile.html?id=${dep.id}">
+   ${dep.callsign} | ${dep.name}
+   </a>
+  `;
+
+  container.appendChild(card);
+
+ });
+
+})
+.catch(err=>{
+ console.error("Fetch error:", err);
+ document.getElementById("deputyList").innerHTML = "<p>FTO and HR Only.</p>";
+});
+function goBack(){
+ window.history.back()
+}
+
+</script>
+
+</body>
+</html>

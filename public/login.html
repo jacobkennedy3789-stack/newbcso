@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <link rel="stylesheet" href="login.css">
+    <div class="login-container"> <!-- Added this div -->
+        <h2>Login</h2>
+        <form id="f">
+            <input id="u" placeholder="Username"> <!-- Added placeholder for usability -->
+            <input id="p" type="password" placeholder="Password"> <!-- Added placeholder -->
+            <button type="submit">Login</button> <!-- Added type="submit" for clarity -->
+        </form>
+    </div> <!-- Closing div -->
+    <script>f.onsubmit=async e=>{e.preventDefault();let r=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u.value,password:p.value})});if(r.ok)location='roster.html';else alert('fail')}</script>
+  </body>
+</html>

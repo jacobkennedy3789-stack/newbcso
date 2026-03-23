@@ -1,0 +1,413 @@
+body{
+background-color:#141f16;
+background-image:url("https://r2.fivemanage.com/K1bk19hXQLPqXLc5U7u3F/E4A69980-B14E-42FF-A671-D3472DD1F459.png");
+background-size:50%;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+font-size:14px;
+}
+
+#callsignInput{
+ width:100%;
+ margin-top:8px;
+ margin-bottom:8px;
+ box-sizing:border-box;
+}
+
+.promotion-history .danger{
+ margin-top:8px;
+}
+
+/* header */
+.menu-dropdown{
+position:relative;
+display:inline-block;
+}
+
+.menu-btn{
+background:#cbbf8b;
+border:none;
+padding:8px 14px;
+font-weight:bold;
+cursor:pointer;
+border-radius:4px;
+}
+
+.menu-content{
+display:none;
+position:absolute;
+background:#0b2b1c;
+min-width:120px;
+padding:8px;
+border-radius:6px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.menu-content button{
+display:block;
+width:100%;
+margin:4px 0;
+}
+
+.menu-dropdown:hover .menu-content{
+display:block;
+}
+
+.header-bar{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+#info{
+margin-left:auto;
+font-weight:bold;
+}
+
+#adminBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+#signoutBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+#adminBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+
+#signinBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+#ftoBtn{
+ background:#c2b280;
+ color:#000000;
+ font-weight:600;
+ font-size:20px;
+ border:none;
+ padding:6px 12px;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:8px;
+}
+
+header {
+    text-align: center;
+    color: #c2b280;
+    font-size: 25px;
+    padding: 20px;
+}
+
+
+/* auth buttons */
+
+.auth-buttons button{
+background:#c2b280;
+border:none;
+padding:8px 14px;
+margin-left:6px;
+color:#000000;
+border-radius:4px;
+cursor:pointer;
+}
+
+.auth-buttons button:hover{
+background:#c2b280;
+}
+
+/* division tabs */
+
+.tabs button{
+background:#c2b280;
+border:none;
+  font-weight:600;
+padding:10px 14px;
+margin:4px;
+font-size:16px;
+color:#000000;
+cursor:pointer;
+border-radius:4px;
+}
+
+.tabs button:hover{
+background:#2d8a4b;
+}
+
+/* trello board */
+
+
+
+.board{
+display:flex;
+ color:white;
+gap:12px;
+}
+
+.roster-layout{
+display:flex;
+gap:20px;
+padding:20px;
+align-items:flex-start;
+}
+
+.command-board{
+
+ display:flex;
+flex-direction:column;
+ gap:1px;
+min-width:200px;
+color:#000;
+}
+/* rank column */
+
+.column{
+background:#7a181800;
+border-radius:8px;
+padding:40px;
+ color:#000000;
+min-width:180px;
+max-width:400px;
+}
+
+.column h2{
+ background:#c2b280;
+ border-radius:6px;
+text-align:center;
+border-bottom:1px solid #c2b280;
+padding-bottom:8px;
+}
+
+/* deputy card */
+
+.card{
+background:#c2b280;
+border-radius:6px;
+padding:6px;
+margin:6px 0;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:8px;
+ color:#000;
+}
+.card:hover{
+background:#186d2e;
+}
+
+/* photo */
+
+.card img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+/* card text */
+
+.info{
+display:flex;
+flex-direction:column;
+font-size:14px;
+}
+
+/* modal */
+
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+}
+
+.modal-content{
+background:#1c1c1c;
+margin:5% auto;
+padding:20px;
+width:500px;
+border-radius:8px;
+color:white;
+}
+
+/* profile header */
+
+.profile-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#c2b280;
+padding:10px 15px;
+border-radius:6px 6px 0 0;
+color:white;
+}
+
+.profile-title h2{
+margin:0;
+font-size:20px;
+}
+
+.profile-rank{
+font-size:14px;
+opacity:0.9;
+}
+
+.profile-close{
+background:none;
+border:none;
+color:white;
+font-size:20px;
+cursor:pointer;
+}
+
+/* profile layout */
+
+.profile-main{
+display:flex;
+gap:30px;
+margin-top:15px;
+}
+
+.profile-left{
+flex:1;
+}
+
+.profile-right{
+width:260px;
+}
+
+/* photo */
+
+.profile-photo{
+width:140px;
+height:140px;
+object-fit:cover;
+border-radius:6px;
+margin-bottom:10px;
+}
+
+/* info */
+
+.profile-info p{
+margin:6px 0;
+}
+
+/* admin panel */
+
+.admin-panel{
+background:#2b2b2b;
+padding:10px;
+border-radius:6px;
+margin-top:15px;
+}
+
+.admin-panel label{
+display:block;
+margin:4px 0;
+}
+
+.admin-panel button{
+margin-top:6px;
+width:100%;
+padding:6px;
+background:#1f6a36;
+border:none;
+color:white;
+border-radius:4px;
+cursor:pointer;
+}
+
+.admin-panel .danger{
+background:#8b1e1e;
+}
+
+/* discipline bar */
+
+.discipline-bar{
+display:flex;
+gap:20px;
+margin-top:10px;
+}
+
+.discipline-stat{
+background:#2b2b2b;
+padding:6px 10px;
+border-radius:4px;
+font-weight:bold;
+}
+
+/* promotion history */
+
+.promotion-history{
+list-style:none;
+padding:0;
+margin-top:10px;
+}
+
+.promotion-history li{
+background:#2b2b2b;
+padding:8px;
+margin-bottom:6px;
+border-radius:4px;
+}
+
+/* disciplinary history */
+
+.discipline-history{
+list-style:none;
+padding:0;
+margin-top:10px;
+}
+
+.discipline-history li{
+background:#2b2b2b;
+padding:8px;
+margin-bottom:6px;
+border-radius:4px;
+}
+
+/* close icon */
+
+#closeModal{
+float:right;
+font-size:24px;
+cursor:pointer;
+}

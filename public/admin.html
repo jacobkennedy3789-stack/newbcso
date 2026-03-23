@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>BCSO Admin</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>BCSO</h2>
+  <button class="backBtn" onclick="goBack()">← Back to Roster</button>
+<a href="admin.html">Deputies</a>
+<a href="permissions.html">Permissions</a>
+<a href="logs.html">Audit Logs</a>
+<a href="roster.html">Roster</a>
+<a href="settings.html">Settings</a>
+</div>
+
+<div class="main">
+
+<h1>Deputy Management</h1>
+
+<button onclick="showCreate()">Create Deputy</button>
+
+
+<div id="createForm" class="modal">
+
+<h3>Create Deputy</h3>
+
+<form id="createDeputyForm">
+
+<input id="name" placeholder="name" required>
+
+<select id="rank" required>
+<option>Sheriff</option>
+<option>Undersheriff</option>
+<option>Chief Deputy</option>
+<option>Major</option>
+<option>Captain</option>
+<option>Lieutenant</option>
+<option>Sergeant</option>
+<option>Corporal</option>
+<option>Senior Deputy</option>
+<option>Deputy</option>
+<option>Probationary Deputy</option>
+</select>
+
+<input type="date" id="hire_date" required>
+
+<button type="submit">Create</button>
+
+</form>
+
+</div>
+<table id="table"></table>
+</div>
+  </div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <h2>Change Password</h2>
+    <form id=f>
+      <input id=c type=password>
+      <input id=n type=password>
+      <button>Change</button>/form>
+      <script>
+
+f.onsubmit = async e => {
+ e.preventDefault()
+
+ let r = await fetch('/change-password',{
+  method:'POST',
+  credentials:"include",
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({
+   current:c.value,
+   newpass:n.value
+  })
+ })
+
+ if(r.ok){
+  alert("Password updated")
+ }else{
+  alert("Error changing password")
+ }
+
+}
+
+</script>
+  </body>
+</html>

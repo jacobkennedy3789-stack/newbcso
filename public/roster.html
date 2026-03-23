@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>BCSO Roster</title>
+<link rel="stylesheet" href="roster.css">
+</head>
+
+<body>
+
+<header>
+
+<div class="header-bar">
+
+  <div class="menu-dropdown">
+
+<button class="menu-btn">☰</button>
+
+<div class="menu-content">
+<button id="adminBtn" onclick="goADMIN()">Admin</button>
+<button id="ftoBtn" onclick="goFTO()">FTO</button>
+<button onclick="window.location.href='/terminations.html'">Terminations</button>
+<button id="signoutBtn" onclick="signOut()">Sign Out</button>
+</div>
+
+</div>
+
+<h1>BCSO Deputy Roster</h1>
+
+<button id="signinBtn" onclick="signIn()">Sign In</button>
+  </div>
+<div class="tabs">
+
+<button onclick="setDivision('all')">All</button>
+<button onclick="setDivision('CID')">CID</button>
+<button onclick="setDivision('ERT')">ERT</button>
+<button onclick="setDivision('FTO')">FTO</button>
+<button onclick="setDivision('HR')">HR</button>
+<button onclick="setDivision('K-9')">K-9</button>
+<button onclick="setDivision('SRT')">SRT</button>  
+<button onclick="setDivision('SWAT')">SWAT</button>
+<button onclick="setDivision('TEU')">TEU</button>
+<button onclick="setDivision('Wildlife')">Wildlife</button>
+
+</div>
+
+</header>
+
+<div class="roster-layout">
+
+<!-- COMMAND STRUCTURE -->
+
+<div id="commandBoard" class="command-board"></div>
+
+<!-- MAIN ROSTER -->
+
+<div id="board" class="board"></div>
+
+</div>
+<!-- PROFILE MODAL -->
+
+<div id="profileModal" class="modal">
+
+<div class="modal-content">
+
+<div id="profileContent"></div>
+
+</div>
+
+</div>
+
+<script src="roster.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+<html><body><h2>Audit Logs</h2><div id=l></div><script>fetch('/admin/logs',{credentials:'include'}).then(r=>r.json()).then(d=>{l.innerHTML=d.map(x=>x.username+' '+x.action+' '+x.created).join('<br>')})</script></body></html>
